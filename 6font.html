@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" style="margin:0 auto;border:1px #ddd solid">
+		The current browser does not support Canvas, can replace the browser a try!
+	</canvas>
+
+	<script>
+
+		window.onload = function(){
+			var canvas = document.getElementById('canvas');
+
+			canvas.width = 1024;
+			canvas.height = 2800;
+
+			if(canvas.getContext('2d')){
+				var context = canvas.getContext('2d');
+
+				// fill
+				context.font = "bold 60px Arial";
+				context.fillStyle = "#058";
+				context.fillText("hello cynthia",40,100);
+
+				// stroke
+				context.lineWidth = 1;
+				context.strokeStyle = "red"
+				context.strokeText("hello cynthia",40,200);
+
+				// font的第四个参数 控制文字长度
+				context.lineWidth = 1;
+				context.strokeStyle = "green"
+				context.strokeText("hello cynthia",40,300,60);
+				
+				// fill + linearGradient
+				var linearGrad = context.createLinearGradient(0,0,300,0);
+				linearGrad.addColorStop(0.0,'red');
+				linearGrad.addColorStop(0.25,'yellow');
+				linearGrad.addColorStop(0.5,'green');
+				linearGrad.addColorStop(0.75,'blue');
+				linearGrad.addColorStop(1.0,'pink');
+				context.fillStyle = linearGrad;
+				context.fillText("hello cynthia",40,400);
+
+				// fill + image背景
+				var backgroundImage = new Image();
+				backgroundImage.src = "img/1.png";
+				backgroundImage.onload = function(){
+					var pattern = context.createPattern(backgroundImage,'repeat');
+					context.fillStyle = pattern;
+					context.fillText("hello cynthia",40,500);
+				}
+
+				// fill + image背景 + 描边
+				var backgroundImage = new Image();
+				backgroundImage.src = "img/1.png";
+				backgroundImage.onload = function(){
+					var pattern = context.createPattern(backgroundImage,'repeat');
+					context.fillStyle = pattern;
+					context.fillText("hello cynthia",40,600);
+					context.strokeStyle = linearGrad;
+					context.strokeText("hello cynthia",40,600);
+				}
+
+
+
+				context.fillStyle="#508"
+				// font-style 1.1
+				context.font = "bold 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,700);
+				// font-style 1.2
+				context.font = "italic bold 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,800);
+				// font-style 1.3
+				context.font = "oblique bold 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,800);
+
+
+				context.fillStyle="#485"
+				// font-variant 1.1
+				context.font = "small-caps bold 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,900);
+
+
+				context.fillStyle="#234"
+				// font-weight 1.1
+				context.font = "lighter 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1000);
+				// font-weight 1.2
+				context.font = "normal 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1100);
+				// font-weight 1.3
+				context.font = "bold 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1200);
+				// font-weight 1.4
+				context.font = "boler 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1300);
+
+
+				context.fillStyle="#54b"
+				// font-size 1.1
+				context.font = "xx-small 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1400);
+				// font-size 1.2
+				context.font = "x-small 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1500);
+				// font-size 1.3
+				context.font = "small 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1600);
+				// font-size 1.4
+				context.font = "large 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1700);
+				// font-size 1.5
+				context.font = "x-large 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1800);
+				// font-size 1.6
+				context.font = "xx-large 40px sans-serif";
+				context.fillText("CYNTHIA娆墨旧染",40,1900);
+
+
+				// textAlign
+				context.fillStyle = "red";
+				context.font = "bold 40px sans-serif";
+					// 1.1
+				context.textAlign = "left";
+				context.fillText("textAlign=left",40,2000)
+					// 1.2
+				context.textAlign = "center";
+				context.fillText("textAlign=center",40,2100)
+					// 1.3
+				context.textAlign = "right";
+				context.fillText("textAlign=right",40,2200)
+
+
+				// Baseline
+				context.fillStyle = "green";
+				context.font = "bold 40px sans-serif";
+					// 1.1
+				context.textBaseline = "top";
+				context.fillText("textBaseline=top",40,2300)
+					// 1.2
+				context.textBaseline = "middle";
+				context.fillText("textBaseline=middle",40,2400)
+					// 1.3
+				context.textBaseline = "bottom";
+				context.fillText("textBaseline=bottom",40,2500)
+
+
+				// measureText
+				var textWidth = context.measureText("CYNTHIA娆墨旧染").width;
+
+
+			}else{
+				alert('当前游览器不支持Canvas，请更换游览器后再试！',40,2600);
+			}
+		}
+
+	</script>
+</body>
+<script>
+	/*文字
+		
+		context.font = "bold 40px Arial"
+
+		context.fillText(string,x,y,[maxlen])
+
+		context.strokeText(string,x,y,[maxlen])
+
+
+
+		context.font 默认值 "20px sans-serif"
+
+			font-style
+				normal
+				italic 斜体
+				oblique 倾斜字体
+
+			font-variant
+				normal
+				small-caps  英文小写
+			font-size
+				xx-small
+				x-small
+				meium
+				large
+				x-large
+				xx-large
+			font-family
+				可以用逗号进行字体备选
+				@font-face
+			font-weight
+				lighter
+				normal
+				bold
+				bolder
+	
+
+
+	文本对齐
+		//水平 以文字开始点的垂直线为基准
+		context.textAlign = lefe
+							center
+							right
+		
+		//垂直	以文字中心的水平线问基准
+		context.Baseline =  top
+							middle
+							bottom
+							alphabetic （为拉丁字母做的基准线）
+							ideographic （为方块文字做的基准线）
+							hanging （为印度文做的基准线）
+	
+
+	文本的度量
+		context.measureText(string).width
+	*/
+</script>
+</html>
